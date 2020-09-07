@@ -1,4 +1,5 @@
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from all_apps.models import Quiz, QuizQuestion, QuizOptions, QuizScoreData
 
@@ -35,3 +36,13 @@ class QuizOptionsModelViewSet(viewsets.ModelViewSet):
     serializer_class = QuizOptionsSerializer
     permission_classes = [IsAuthenticated]
     queryset = QuizOptions.objects.all()
+
+
+class GetQuizQuestionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request,*args,**kwargs):
+        obj_id = kwargs['pk']
+        data = QuizQuestion.objects.filter(quiz=obj_id)
+        serializer = QuizQuestionSerializer(instance=data, many=True)
+        return Response({'result':serializer.data})
