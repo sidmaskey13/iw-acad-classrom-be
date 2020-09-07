@@ -24,7 +24,7 @@ class PostModelViewSet(viewsets.ModelViewSet):
     # pagination_class = PostPaginate
     # page_size = 3
 
-    @method_decorator(cache_page(60 * 5))
+    # @method_decorator(cache_page(60 * 5))
     def list(self, request, format=None):
         queryset = self.filter_queryset(self.get_queryset())
 
