@@ -6,7 +6,8 @@ from all_apps.models import Quiz, QuizQuestion, QuizOptions, QuizScoreData
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 
-from all_apps.serializers.quiz import QuizSerializer, QuizOptionsSerializer, QuizScoreDataSerializer, QuizQuestionSerializer
+from all_apps.serializers.quiz import QuizSerializer, QuizOptionsSerializer, QuizScoreDataSerializer, \
+    QuizQuestionSerializer
 
 
 class QuizMainModelViewSet(viewsets.ModelViewSet):
@@ -41,8 +42,48 @@ class QuizOptionsModelViewSet(viewsets.ModelViewSet):
 class GetQuizQuestionView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         obj_id = kwargs['pk']
         data = QuizQuestion.objects.filter(quiz=obj_id)
         serializer = QuizQuestionSerializer(instance=data, many=True)
-        return Response({'result':serializer.data})
+        return Response({'result': serializer.data})
+
+
+class AddQuestion(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        serializerQuestion = QuizQuestionSerializer(data={'quiz': request.data.get('quiz'),
+                  'title': request.data.get('title')})
+        serializerQuestion.is_valid(raise_exception=True)
+        serializerQuestion.save()
+
+        serializerOption1 = QuizOptionsSerializer(
+            data={'option': request.data.get('option1'),
+                  'correct': request.data.get('option1_correct'), 'question': serializerQuestion.data['id']})
+        serializerOption1.is_valid(raise_exception=True)
+        serializerOption1.save()
+
+        serializerOption2 = QuizOptionsSerializer(
+            data={'option': request.data.get('option2'),
+                  'correct': request.data.get('option2_correct'), 'question': serializerQuestion.data['id']})
+        serializerOption2.is_valid(raise_exception=True)
+        serializerOption2.save()
+
+        serializerOption3 = QuizOptionsSerializer(
+            data={'option': request.data.get('option3'),
+                  'correct': request.data.get('option3_correct'), 'question': serializerQuestion.data['id']})
+        serializerOption3.is_valid(raise_exception=True)
+        serializerOption3.save()
+
+        serializerOption4 = QuizOptionsSerializer(
+            data={'option': request.data.get('option4'),
+                  'correct': request.data.get('option4_correct'), 'question': serializerQuestion.data['id']})
+        serializerOption4.is_valid(raise_exception=True)
+        serializerOption4.save()
+
+        # serializerQuestion.save(user=self.request.user)
+
+        # data = AssignmentSubmit.objects.filter(assignment=obj_id)
+        # serializer = AssignmentSubmitSerializer(instance=data, many=True)
+        return Response({'result': serializerOption3.data})

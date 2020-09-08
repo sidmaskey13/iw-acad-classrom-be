@@ -21,6 +21,7 @@ class QuizOptionsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class QuizQuestionSerializer(serializers.ModelSerializer):
     options = QuizOptionsSerializer(source='quiz_answers', read_only=True, many=True)
 

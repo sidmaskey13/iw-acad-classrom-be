@@ -6,6 +6,7 @@ from all_apps.models import AssignmentQuestion, AssignmentSubmit
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 
+from all_apps.serializers import QuizQuestionSerializer
 from all_apps.serializers.assingment import AssignmentQuestionSerializer, AssignmentSubmitSerializer
 from rest_framework.parsers import FileUploadParser
 
@@ -52,6 +53,9 @@ class GetAllAssignemntView(APIView):
         data = AssignmentSubmit.objects.filter(assignment=obj_id)
         serializer = AssignmentSubmitSerializer(instance=data, many=True)
         return Response({'result':serializer.data})
+
+
+
 
 
 
