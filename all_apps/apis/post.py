@@ -1,11 +1,12 @@
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from all_apps.models import Post
 
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 
-from all_apps.serializers.post import PostSerializer
+from all_apps.serializers.post import PostSerializer, PostOwnSerializer
 from rest_framework.pagination import PageNumberPagination
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
@@ -46,3 +47,12 @@ class PostModelViewSet(viewsets.ModelViewSet):
             return Response({'status': 'OK', 'message': 'Item deleted'}, status=status.HTTP_200_OK)
         else:
             return Response({'message': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class OwnPostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        data = Post.objects.filter(user=self.request.user)
+        serializer = PostOwnSerializer(instance=data, many=True)
+        return Response({'result': serializer.data})

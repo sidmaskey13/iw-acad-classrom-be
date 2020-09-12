@@ -10,6 +10,7 @@ from all_apps.serializers import QuizQuestionSerializer
 from all_apps.serializers.assingment import AssignmentQuestionSerializer, AssignmentSubmitSerializer
 from rest_framework.parsers import FileUploadParser
 
+
 class AssignmentQuestionModelViewSet(viewsets.ModelViewSet):
     serializer_class = AssignmentQuestionSerializer
     permission_classes = [IsAuthenticated]
@@ -54,6 +55,14 @@ class GetAllAssignemntView(APIView):
         serializer = AssignmentSubmitSerializer(instance=data, many=True)
         return Response({'result':serializer.data})
 
+
+class GetAllOwnAssignemntView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request,*args,**kwargs):
+        data = AssignmentSubmit.objects.filter(user=self.request.user)
+        serializer = AssignmentSubmitSerializer(instance=data, many=True)
+        return Response({'result':serializer.data})
 
 
 

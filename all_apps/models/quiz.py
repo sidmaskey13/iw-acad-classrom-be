@@ -15,7 +15,7 @@ class Quiz(models.Model):
 
 class QuizQuestion(models.Model):
     title = models.CharField(max_length=200)
-    quiz = models.ForeignKey(Quiz, on_delete=models.SET_NULL, null=True, related_name='quiz_questions')
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True, related_name='quiz_questions')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -23,7 +23,7 @@ class QuizQuestion(models.Model):
 
 
 class QuizOptions(models.Model):
-    question = models.ForeignKey(QuizQuestion, on_delete=models.SET_NULL, null=True, related_name='quiz_answers')
+    question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE, null=True, related_name='quiz_answers')
     option = models.CharField(max_length=100)
     correct = models.BooleanField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -36,6 +36,7 @@ class QuizScoreData(models.Model):
     user = models.ForeignKey(User, related_name='quiz_data', on_delete=models.CASCADE, null=True)
     quiz = models.ForeignKey(Quiz, related_name='quiz_score_data', on_delete=models.CASCADE, null=True)
     score = models.IntegerField(null=True,blank=True)
+    total = models.IntegerField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 

@@ -15,6 +15,14 @@ class QuizScoreDataSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class QuizScoreAllUserDataSerializer(serializers.ModelSerializer):
+    userName = serializers.CharField(source='user.username', read_only=True)
+
+    class Meta:
+        model = QuizScoreData
+        fields = '__all__'
+
+
 class QuizOptionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuizOptions

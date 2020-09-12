@@ -13,3 +13,10 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'
+
+class PostOwnSerializer(serializers.ModelSerializer):
+    userName = serializers.CharField(source='user.username', read_only=True)
+
+    class Meta:
+        model = Post
+        fields = '__all__'
