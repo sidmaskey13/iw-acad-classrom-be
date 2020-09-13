@@ -1,4 +1,6 @@
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from all_apps.models import Like
 
@@ -8,18 +10,29 @@ from rest_framework.permissions import IsAuthenticated
 from all_apps.serializers.like import LikeSerializer
 
 
-class LikeModelViewSet(viewsets.ModelViewSet):
-    serializer_class = LikeSerializer
+class LikeAddView(APIView):
     permission_classes = [IsAuthenticated]
-    queryset = Like.objects.all()
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-    def destroy(self, request, *args, **kwargs):
-        serializer = LikeSerializer(instance=self.get_object())
-        if self.request.user.id == serializer.data['user']:
-            self.get_object().delete()
-            return Response({'status': 'OK', 'message': 'Item deleted'}, status=status.HTTP_200_OK)
+    def post(self, request, *args, **kwargs):
+        serializerQuestion = LikeSerializer(data={'count': request.data.get('countAdd'), 'post': request.data.get('post')})
+        serializerQuestion.is_valid(raise_exception=True)
+        # serializerQuestion.save()
+        postId = int(serializerQuestion.data['post'])
+        likeAdd = int(serializerQuestion.data['count'])
+        data = Like.objects.filter(post=postId)
+        if data:
+            old = int(data['count'])
+            Like.objects.filter(post=postId).update(count=likeAdd+old)
+            return Response({'result': 'Updated'})
         else:
-            return Response({'message': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
+            b = Like.objects.create(count=likeAdd, post=postId)
+            return Response({'result': 'Created'})
+
+
+
+
+        return Response({'result':data})
+        # return Response({'result':serializerQuestion.data['post']})
+
+
+

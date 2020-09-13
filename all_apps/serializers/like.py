@@ -4,8 +4,8 @@ from all_apps.models import Like
 
 
 class LikeSerializer(serializers.ModelSerializer):
-    userName = serializers.CharField(source='user.username', read_only=True)
+    # countAdd = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Like
-        fields = '__all__'
+        fields = ('post','count')

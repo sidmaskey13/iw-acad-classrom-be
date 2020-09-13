@@ -1,8 +1,7 @@
+from django.urls import path
 from rest_framework import routers
 
-from all_apps.apis.like import LikeModelViewSet
+from all_apps.apis.like import LikeAddView
 
-router = routers.DefaultRouter()
-router.register('api/like', LikeModelViewSet, 'likes')
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('api/add_like', LikeAddView.as_view())]

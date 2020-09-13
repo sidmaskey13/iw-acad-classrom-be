@@ -22,8 +22,8 @@ class PostModelViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
     queryset = Post.objects.all().order_by('-id')
-    # pagination_class = PostPaginate
-    # page_size = 3
+    pagination_class = PostPaginate
+    page_size = 3
 
     # @method_decorator(cache_page(60 * 5))
     def list(self, request, format=None):
