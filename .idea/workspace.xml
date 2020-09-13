@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1d8bd7b9-00f8-4985-9f06-3d494e4711cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/admins/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/admins/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/apis/like.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/apis/like.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/apis/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/apis/post.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/models/like.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/models/like.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/serializers/like.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/serializers/like.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/serializers/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/serializers/post.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/tests/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_apps/urls/like.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/urls/like.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_apps/apis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/apis/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classrom_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/classrom_project/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
