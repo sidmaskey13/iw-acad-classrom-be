@@ -65,6 +65,15 @@ class GetAllOwnAssignemntView(APIView):
         return Response({'result':serializer.data})
 
 
+class CheckSubmissionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request,*args,**kwargs):
+        data = AssignmentSubmit.objects.filter(user=self.request.user)
+        serializer = AssignmentSubmitSerializer(instance=data, many=True)
+        return Response({'result':serializer.data})
+
+
 
 
 
