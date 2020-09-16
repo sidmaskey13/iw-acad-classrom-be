@@ -8,7 +8,7 @@ from all_apps.models import UserDetail
 class AllUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'is_staff','is_superuser')
+        fields = ('id', 'username', 'email', 'is_staff', 'is_superuser')
 
 
 class ProfilePicSerializer(serializers.ModelSerializer):

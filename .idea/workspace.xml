@@ -4,7 +4,10 @@
     <list default="true" id="1d8bd7b9-00f8-4985-9f06-3d494e4711cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/all_apps/apis/assignment.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/apis/assignment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_apps/apis/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/apis/authentication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/all_apps/serializers/assingment.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/serializers/assingment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_apps/serializers/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/serializers/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_apps/urls/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_apps/urls/authentication.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

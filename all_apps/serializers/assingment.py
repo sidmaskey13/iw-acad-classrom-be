@@ -1,6 +1,12 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from all_apps.models import AssignmentQuestion, AssignmentSubmit
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
 
 
 class AssignmentQuestionSerializer(serializers.ModelSerializer):
@@ -15,7 +21,8 @@ class AssignmentQuestionSerializer(serializers.ModelSerializer):
         return obj.assignment_submissions.count()
 
     def get_status(self, obj):
-        return obj.assignment_submissions.filter(user=self.request.user)
+        user = self.context['request'].user
+        return obj.assignment_submissions.filter(user=user.id).count()
 
 
 class AssignmentSubmitSerializer(serializers.ModelSerializer):

@@ -20,6 +20,7 @@ class AssignmentQuestionModelViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
     def destroy(self, request, *args, **kwargs):
         serializer = AssignmentQuestionSerializer(instance=self.get_object())
         if self.request.user.id == serializer.data['user']:

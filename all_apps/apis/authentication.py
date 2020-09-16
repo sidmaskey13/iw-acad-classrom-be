@@ -86,3 +86,10 @@ class AllUserAPI(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated,]
     serializer_class = AllUserSerializer
     queryset = User.objects.all()
+
+
+class UserDeleteAPI(generics.DestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated,IsAdminUser,]
+    serializer_class = AllUserSerializer
+
+    queryset = User.objects.all()
