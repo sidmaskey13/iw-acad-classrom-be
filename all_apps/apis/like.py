@@ -10,29 +10,12 @@ from rest_framework.permissions import IsAuthenticated
 from all_apps.serializers.like import LikeSerializer
 
 
-class LikeAddView(APIView):
+class LikeModelViewSet(viewsets.ModelViewSet):
+    serializer_class = LikeSerializer
     permission_classes = [IsAuthenticated]
-
-    def post(self, request, *args, **kwargs):
-        serializerQuestion = LikeSerializer(data={'count': request.data.get('countAdd'), 'post': request.data.get('post')})
-        serializerQuestion.is_valid(raise_exception=True)
-        # serializerQuestion.save()
-        postId = int(serializerQuestion.data['post'])
-        likeAdd = int(serializerQuestion.data['count'])
-        data = Like.objects.filter(post=postId)
-        if data:
-            old = int(data['count'])
-            Like.objects.filter(post=postId).update(count=likeAdd+old)
-            return Response({'result': 'Updated'})
-        else:
-            b = Like.objects.create(count=likeAdd, post=postId)
-            return Response({'result': 'Created'})
+    queryset = Like.objects.all()
 
 
-
-
-        return Response({'result':data})
-        # return Response({'result':serializerQuestion.data['post']})
 
 
 

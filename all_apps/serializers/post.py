@@ -10,11 +10,14 @@ class PostSerializer(serializers.ModelSerializer):
     userName = serializers.CharField(source='user.username', read_only=True)
     userProfile = ProfilePicSerializer(source='user.profile_pic', read_only=True)
     comments = CommentSerializer(source='post_comments', read_only=True,many=True)
-    likes = LikeSerializer(source='post_likes', read_only=True)
+    likes_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = '__all__'
+
+    def get_likes_count(self, obj):
+        return obj.post_likes.count()
 
 class PostOwnSerializer(serializers.ModelSerializer):
     userName = serializers.CharField(source='user.username', read_only=True)
